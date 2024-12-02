@@ -1,25 +1,28 @@
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
-const inter = Inter({subsets: ['latin']});
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title:{
-        template:"%s - AI Resume Builder",
-        absolute:"AI Resume Builder",
+    title: {
+        template: "%s - AI Resume Builder",
+        absolute: "AI Resume Builder",
     },
-    description:"AI Resume Builder is the easiest way to create a professional resume that will help to land in your dream job.",
+    description: "AI Resume Builder is the easiest way to create a professional resume that will help to land in your dream job.",
 };
 
-export default function RootLayout({children,}: Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
     return (
-        <html lang="en">
-        <body
-            className={inter.className}
-        >
-        {children}
-        </body>
-        </html>
+        <ClerkProvider>
+            <html lang="en">
+                <body
+                    className={inter.className}
+                >
+                    {children}
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }
